@@ -106,14 +106,34 @@ void Macierz<wierzcholkow>::Dijkstra(int korzen){
 struct Lista_sasiedztwa{
 
     Krawedz *poczatek;
-    int ile_w, ile_k;
 
-    Lista_sasiedztwa(){poczatek=0; ile_w=0; ile_k=0;}
-    Lista_sasiedztwa(int wierzcholkow){poczatek=0; ile_w=wierzcholkow;}
+    Lista_sasiedztwa(){poczatek=0;}
     void DodajKr(int w1, int w2, int dystans);
-    void Dijkstra(int korzen);
     void Wypisz();
 };
+struct Graf{
 
+    Lista_sasiedztwa *lista;
+    int ile_w;
+
+    Graf(int wierzcholkow){
+
+        lista=new Lista_sasiedztwa[wierzcholkow];
+        ile_w=wierzcholkow;
+    }
+//    void dodaj(Lista_sasiedztwa lista1, int idx){
+//
+//        lista[idx]=lista1;
+//    }
+    void Dijkstra(int korzen);
+    void Wypisz(int wierzcholkow){
+
+        for(int i=0; i<wierzcholkow; i++){
+            std::cout<<"Wierzcholek nr "<<i<<std::endl;
+            lista[i].Wypisz();
+            std::cout<<std::endl;
+        }
+    }
+};
 
 #endif // OBIEKTY_HH_INCLUDED

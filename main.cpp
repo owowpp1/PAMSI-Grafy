@@ -1,7 +1,7 @@
 #include "Obiekty.hh"
 #include "Dijkstra.hh"
 
-#define wierzcholkow 10
+#define wierzcholkow 30
 #define procent 50
 
 using namespace std;
@@ -16,16 +16,18 @@ int main(){
 
     mac.Dijkstra(1);
 
-    Lista_sasiedztwa lista(wierzcholkow);
+
+    Graf graf(wierzcholkow);
     for(int i=0; i<wierzcholkow; i++){
+        Lista_sasiedztwa lista;
         for(int j=0; j<wierzcholkow; j++){
             if(mac.Mac[i][j].dystans!=0)
-            lista.DodajKr(i,j,mac.Mac[i][j].dystans);
-            lista.ile_k++;
+            graf.lista[i].DodajKr(i,j,mac.Mac[i][j].dystans);
         }
     }
-    lista.Wypisz();
-    lista.Dijkstra(1);
+
+//    graf.Wypisz(wierzcholkow);
+    graf.Dijkstra(1);
 
     cout << "Hello world!" << endl;
     return 0;

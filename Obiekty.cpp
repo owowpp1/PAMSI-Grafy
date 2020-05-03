@@ -22,10 +22,10 @@ void Lista_sasiedztwa::DodajKr(int w1, int w2, int dystans){
 
 
 
-void Lista_sasiedztwa::Dijkstra(int korzen){
+void Graf::Dijkstra(int korzen){
 
     int odleglosci[ile_w];
-    kopiec Kopiec(ile_k);
+    kopiec Kopiec(ile_w);
 //    std::cout<<"Pierwszy for\n";
     for (int i=0; i<ile_w; i++){
         odleglosci[i]=INT_MAX;
@@ -43,14 +43,13 @@ void Lista_sasiedztwa::Dijkstra(int korzen){
 //    std::cout<<"Pierwszy while\n";
     while (czypustykopiec(Kopiec)==false){
 
-        el_kopca Najblizszy=wyciung_najmn(Kopiec);
-        int x=Najblizszy.wierzcholek;
-        Krawedz *krawedz=poczatek;
+        el_kopca element=wyciung_najmn(Kopiec);
+        int x=element.wierzcholek;
+        Krawedz *krawedz=lista[x].poczatek;
 //        std::cout<<"drugi while\n";
         while (krawedz!=NULL){
 
             int wierzcholek=krawedz->w2;
-
             if (Czywkopcu(Kopiec, wierzcholek) && odleglosci[x]!=INT_MAX &&
                 krawedz->dystans+odleglosci[x]<odleglosci[wierzcholek]){
 
@@ -59,9 +58,9 @@ void Lista_sasiedztwa::Dijkstra(int korzen){
             }
             krawedz=krawedz->nastepna;
         }
-            std::cout<<"KOPIEC:\n";
-            Kopiec.Wypisz();
-            std::cout<<"Koniec KOPCA\n";
+//            std::cout<<"KOPIEC:\n";
+//            Kopiec.Wypisz();
+//            std::cout<<"Koniec kopca\n";
     }
 
     std::cout<<"Lista: odległości od wierzchołka numer "<<korzen<<":\n";
@@ -74,7 +73,6 @@ void Lista_sasiedztwa::Dijkstra(int korzen){
 void Lista_sasiedztwa::Wypisz(){
 
     Krawedz *pomoc=poczatek;
-    std::cout<<"rozmiar: "<<ile_w<<std::endl;
     while(pomoc!=NULL){
         std::cout<<pomoc->w2<<' '<<pomoc->dystans<<std::endl;
         pomoc=pomoc->nastepna;

@@ -18,13 +18,13 @@ struct el_kopca{
     }
 };
 
-struct kopiec
-{
+struct kopiec{
     int rozmiar;
     int pojemnosc;
     int *pomoc;
     el_kopca *Kopiec;
 
+    void push(el_kopca element);
     kopiec(int pojemnosc1){
 
         rozmiar=0;
@@ -36,6 +36,8 @@ struct kopiec
         el_kopca tmp=Kopiec[e1];
         Kopiec[e1]=Kopiec[e2];
         Kopiec[e2]=tmp;
+        pomoc[e2]=e1;
+        pomoc[e1]=e2;
     }
     void Wypisz(){
         for(int i=0; i<rozmiar; i++){

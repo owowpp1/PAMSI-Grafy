@@ -1,6 +1,18 @@
 #include "Obiekty.hh"
 using namespace std;
 
+void kopiec::push(el_kopca element){
+
+    Kopiec[rozmiar]=element;
+    rozmiar++;
+    while(rozmiar>0){
+        if(Kopiec[(rozmiar-1)/2].dystans<Kopiec[rozmiar].dystans){
+            Podmien((rozmiar-1)/2, rozmiar);
+            rozmiar=(rozmiar-1)/2;
+        }
+    }
+}
+
 int najblizszy(int dys[], bool drzewo[], int wierzcholkow){
 
     int najk_dro=INT_MAX;
