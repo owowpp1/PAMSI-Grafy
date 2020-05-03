@@ -81,7 +81,6 @@ void Macierz::Dijkstra(int korzen){
         else std::cout<<"Brak połączenia.\n";
     }
 }
-
 void Lista_sasiedztwa::DodajKr(int w1, int w2, int dystans){
 
     Krawedz *krawedz=new Krawedz;

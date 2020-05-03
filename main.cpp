@@ -79,7 +79,6 @@ int main(){
             break;
         }
     }
-
     Macierz mac(procent, wierzcholkow);
 
     mac.Wypisz();

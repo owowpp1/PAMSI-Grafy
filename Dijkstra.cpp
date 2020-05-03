@@ -47,7 +47,6 @@ bool czypustykopiec(kopiec Kopiec){
     if(Kopiec.rozmiar==0)return true;
     else return false;
 }
-
 el_kopca wyciung_najmn(kopiec &Kopiec){
 
     if(!czypustykopiec(Kopiec)) {

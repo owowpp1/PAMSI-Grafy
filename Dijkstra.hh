@@ -8,7 +8,6 @@ struct el_kopca{
     int  dystans;
 
     el_kopca(){
-
         wierzcholek=0;
         dystans=0;
     }

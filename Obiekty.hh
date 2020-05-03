@@ -24,7 +24,6 @@ struct Krawedz{
     int dystans;
     int w1, w2;
     struct Krawedz* nastepna;
-
     Krawedz(){
         dystans=0;
         w2=0;
