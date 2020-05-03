@@ -9,7 +9,10 @@
 #include <limits.h>
 
 #include "Dijkstra.hh"
+struct Dane{
 
+    int wierzcholkow1, krawedzi, startowy, x, y;
+};
 struct Wierzcholek{
 
     std::string nazwa;
@@ -27,81 +30,27 @@ struct Krawedz{
         w2=0;
         nastepna=0;
     }
+    ~Krawedz(){};
 };
 
-template<int wierzcholkow>
 struct Macierz{
 
-    Krawedz Mac[wierzcholkow][wierzcholkow];
+    Krawedz **Mac;
+    int rozmiar;
 
-    Macierz(int procent);
+    Macierz(int procent, int wierzcholkow);
+    Macierz(int wierzcholkow);
     void Wypisz();
     void Dijkstra(int korzen);
+    ~Macierz(){
+        for(int i=0; i<rozmiar; i++){
+            delete [] Mac[i];
+        }
+        delete [] Mac;
+    }
 };
-template<int wierzcholkow>
-Macierz<wierzcholkow>::Macierz(int procent){
-    int j=1;
-    for(int i=0; i<wierzcholkow-1; i++){
-        Mac[i][j].dystans=rand()%900+100;
-        j++;
-    }
-    srand (time(NULL));
-    int krawedzi=procent*(wierzcholkow*(wierzcholkow-1))/200-wierzcholkow+2;
-    int w1,w2;
-    for(int i=1; i<krawedzi; i++){
-        w1=0; w2=1;
-        while(Mac[w1][w2].dystans!=0){
-            w1=rand()%(wierzcholkow-2);
-            w2=rand()%(wierzcholkow-w1-1)+w1+1;
-        }
-        Mac[w1][w2].dystans=rand()%900+100;
-    }
-    int x=wierzcholkow-1;
-    for(int j=0; j<wierzcholkow-1; j++){
-        for(int i=x; i>0; i--){
-            Mac[i+wierzcholkow-x-1][j].dystans=Mac[j][i+wierzcholkow-x-1].dystans;
-        }
-        x--;
-    }
-}
-template<int wierzcholkow>
-void Macierz<wierzcholkow>::Wypisz(){
-    for(int i=0; i<wierzcholkow; i++){
-        for(int j=0; j<wierzcholkow; j++){
-            if(Mac[i][j].dystans==0) std::cout<<std::setw(5)<<0;
-            else std::cout<<std::setw(5)<<Mac[i][j].dystans;
-        }
-        std::cout<<'\n';
-    }
-}
-template<int wierzcholkow>
-void Macierz<wierzcholkow>::Dijkstra(int korzen){
 
-    int odleglosci[wierzcholkow];
-    bool drzewo[wierzcholkow];
 
-    for (int i=0; i<wierzcholkow; i++){
-        odleglosci[i]=INT_MAX, drzewo[i]=false;
-    }
-    odleglosci[korzen]=0;
-
-    for (int i=0; i<wierzcholkow-1; i++){
-        int x=najblizszy(odleglosci, drzewo, wierzcholkow);
-        drzewo[x]=true;
-
-        for(int i=0; i<wierzcholkow; i++){
-            if (drzewo[i]==false && odleglosci[x]+Mac[x][i].dystans<odleglosci[i]
-                && Mac[x][i].dystans!=0 && odleglosci[x]!=INT_MAX){
-
-                    odleglosci[i]=odleglosci[x]+Mac[x][i].dystans;
-            }
-        }
-    }
-    std::cout<<"Macierz: odległości od wierzchołka numer "<<korzen<<":\n";
-    for(int i=0; i<wierzcholkow; i++){
-        std::cout<<"Do "<<i<<"    "<<odleglosci[i]<<std::endl;
-    }
-}
 
 struct Lista_sasiedztwa{
 
@@ -121,14 +70,25 @@ struct Graf{
         lista=new Lista_sasiedztwa[wierzcholkow];
         ile_w=wierzcholkow;
     }
+    ~Graf(){
+        for(int i=0; i<ile_w; i++){
+            Krawedz *pomoc=lista[i].poczatek;
+            while(pomoc!=NULL){
+                lista[i].poczatek=pomoc->nastepna;
+                delete pomoc;
+                pomoc=lista[i].poczatek;
+            }
+        }
+        delete [] lista;
+    }
 //    void dodaj(Lista_sasiedztwa lista1, int idx){
 //
 //        lista[idx]=lista1;
 //    }
     void Dijkstra(int korzen);
-    void Wypisz(int wierzcholkow){
+    void Wypisz(){
 
-        for(int i=0; i<wierzcholkow; i++){
+        for(int i=0; i<ile_w; i++){
             std::cout<<"Wierzcholek nr "<<i<<std::endl;
             lista[i].Wypisz();
             std::cout<<std::endl;

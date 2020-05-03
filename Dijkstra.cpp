@@ -84,3 +84,23 @@ bool Czywkopcu(kopiec Kopiec, int wierzcholek){
    if(Kopiec.pomoc[wierzcholek]<Kopiec.rozmiar)return true;
    else return false;
 }
+void WykonajZPliku(){
+    Dane dane;
+    ifstream plik;
+    plik.open("Dane.dat", std::ios_base::in);
+    plik>>dane.krawedzi;
+    plik>>dane.wierzcholkow1;
+    plik>>dane.startowy;
+    Macierz zplikum(dane.wierzcholkow1);
+    Graf    zplikug(dane.wierzcholkow1);
+    for(int i=0; i<dane.krawedzi; i++){
+
+        plik>>dane.x;
+        plik>>dane.y;
+        plik>>zplikum.Mac[dane.x][dane.y].dystans;
+        zplikug.lista[dane.x].DodajKr(dane.x,dane.y,zplikum.Mac[dane.x][dane.y].dystans);
+    }
+    zplikum.Wypisz();
+    zplikum.Dijkstra(dane.startowy);
+    zplikug.Dijkstra(dane.startowy);
+}

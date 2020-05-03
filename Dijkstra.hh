@@ -1,6 +1,7 @@
 #ifndef DIJKSTRA_HH_INCLUDED
 #define DIJKSTRA_HH_INCLUDED
 #include <iostream>
+#include <fstream>
 struct el_kopca{
 
     int  wierzcholek;
@@ -52,5 +53,6 @@ bool czypustykopiec(kopiec Kopiec);
 el_kopca wyciung_najmn(kopiec &Kopiec);
 void zmniejszklucz(kopiec &Kopiec, int wierzcholek, int dystans);
 bool Czywkopcu(kopiec Kopiec, int wierzcholek);
+void WykonajZPliku();
 
 #endif // DIJKSTRA_HH_INCLUDED
