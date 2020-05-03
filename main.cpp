@@ -21,9 +21,10 @@ int main(){
         for(int j=0; j<wierzcholkow; j++){
             if(mac.Mac[i][j].dystans!=0)
             lista.DodajKr(i,j,mac.Mac[i][j].dystans);
+            lista.ile_k++;
         }
     }
-//    lista.Wypisz();
+    lista.Wypisz();
     lista.Dijkstra(1);
 
     cout << "Hello world!" << endl;

@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1588509808 source:/home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/main.cpp
+1588514028 source:/home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/main.cpp
 	"Obiekty.hh"
 	"Dijkstra.hh"
 
-1588509606 /home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Obiekty.hh
+1588512803 /home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Obiekty.hh
 	<iostream>
 	<string>
 	<iomanip>
@@ -12,15 +12,16 @@
 	<limits.h>
 	"Dijkstra.hh"
 
-1588510308 source:/home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Dijkstra.cpp
+1588514759 source:/home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Dijkstra.cpp
 	"Obiekty.hh"
 
-1588508447 /home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Dijkstra.hh
+1588514739 /home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Dijkstra.hh
+	<iostream>
 
 1588427164 source:/home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/obiekty.cpp
 	"Obiekty.hh"
 
-1588510616 source:/home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Obiekty.cpp
+1588514131 source:/home/bidzejdryczi/Desktop/pprog/PAMSI/Grafy-p2/Grafy/Obiekty.cpp
 	"Dijkstra.hh"
 	"Obiekty.hh"
 

@@ -106,9 +106,9 @@ void Macierz<wierzcholkow>::Dijkstra(int korzen){
 struct Lista_sasiedztwa{
 
     Krawedz *poczatek;
-    int ile_w;
+    int ile_w, ile_k;
 
-    Lista_sasiedztwa(){poczatek=0; ile_w=0;}
+    Lista_sasiedztwa(){poczatek=0; ile_w=0; ile_k=0;}
     Lista_sasiedztwa(int wierzcholkow){poczatek=0; ile_w=wierzcholkow;}
     void DodajKr(int w1, int w2, int dystans);
     void Dijkstra(int korzen);

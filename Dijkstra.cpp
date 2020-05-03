@@ -17,27 +17,17 @@ int najblizszy(int dys[], bool drzewo[], int wierzcholkow){
 
 void Kopcuj(kopiec &Kopiec, int indeks){
 
-    int najkrotsza, lewy, prawy;
-    najkrotsza=indeks;
-    lewy =2*indeks+1;
-    prawy=2*indeks+2;
+    int Max=indeks;
+    int lewysyn =2*indeks+1;
+    int prawysyn=2*indeks+2;
 
-    if(Kopiec.Kopiec[lewy].dystans<Kopiec.Kopiec[najkrotsza].dystans&&
-       lewy<Kopiec.rozmiar)     najkrotsza=lewy;
+    if (lewysyn <Kopiec.rozmiar && Kopiec.Kopiec[lewysyn] .dystans>Kopiec.Kopiec[Max].dystans) Max=lewysyn;
+    if (prawysyn<Kopiec.rozmiar && Kopiec.Kopiec[prawysyn].dystans>Kopiec.Kopiec[Max].dystans) Max=prawysyn;
 
-    if(Kopiec.Kopiec[prawy].dystans<Kopiec.Kopiec[najkrotsza].dystans&&
-       prawy<Kopiec.rozmiar)    najkrotsza=prawy;
+    if (Max!=indeks){
+        Kopiec.Podmien(Max, indeks);
 
-    if(najkrotsza!=indeks){
-        el_kopca najmniejszy=Kopiec.Kopiec[najkrotsza];
-        el_kopca index      =Kopiec.Kopiec[indeks];
-
-        Kopiec.pomoc[najmniejszy.wierzcholek]=indeks;
-        Kopiec.pomoc[index.wierzcholek]=najkrotsza;
-
-        Kopiec.Podmien(Kopiec.Kopiec[najkrotsza], Kopiec.Kopiec[indeks]);
-
-        Kopcuj(Kopiec, najkrotsza);
+        Kopcuj(Kopiec, Max);
     }
 }
 
@@ -72,7 +62,7 @@ void zmniejszklucz(kopiec &Kopiec, int wierzcholek, int dystans){
 
         Kopiec.pomoc[Kopiec.Kopiec[indeks].wierzcholek]=(indeks-1)/2;
         Kopiec.pomoc[Kopiec.Kopiec[(indeks-1)/2].wierzcholek]=indeks;
-        Kopiec.Podmien(Kopiec.Kopiec[indeks], Kopiec.Kopiec[(indeks-1)/2]);
+        Kopiec.Podmien(indeks, (indeks-1)/2);
         indeks=(indeks-1)/2;
     }
 }

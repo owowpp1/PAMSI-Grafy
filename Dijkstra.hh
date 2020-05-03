@@ -1,6 +1,6 @@
 #ifndef DIJKSTRA_HH_INCLUDED
 #define DIJKSTRA_HH_INCLUDED
-
+#include <iostream>
 struct el_kopca{
 
     int  wierzcholek;
@@ -32,10 +32,15 @@ struct kopiec
         pomoc=new int[pojemnosc];
         Kopiec=new el_kopca[pojemnosc];
     }
-    void Podmien(el_kopca &e1, el_kopca &e2){
-        el_kopca tmp=e1;
-        e1=e2;
-        e2=tmp;
+    void Podmien(int e1, int e2){
+        el_kopca tmp=Kopiec[e1];
+        Kopiec[e1]=Kopiec[e2];
+        Kopiec[e2]=tmp;
+    }
+    void Wypisz(){
+        for(int i=0; i<rozmiar; i++){
+            std::cout<<Kopiec[i].dystans<<' ';
+        }
     }
 };
 

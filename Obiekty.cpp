@@ -25,7 +25,7 @@ void Lista_sasiedztwa::DodajKr(int w1, int w2, int dystans){
 void Lista_sasiedztwa::Dijkstra(int korzen){
 
     int odleglosci[ile_w];
-    kopiec Kopiec(ile_w);
+    kopiec Kopiec(ile_k);
 //    std::cout<<"Pierwszy for\n";
     for (int i=0; i<ile_w; i++){
         odleglosci[i]=INT_MAX;
@@ -39,6 +39,7 @@ void Lista_sasiedztwa::Dijkstra(int korzen){
     Kopiec.Kopiec[korzen]=pomoc;
     Kopiec.pomoc[korzen]=korzen;
     zmniejszklucz(Kopiec, korzen, odleglosci[korzen]);
+
 //    std::cout<<"Pierwszy while\n";
     while (czypustykopiec(Kopiec)==false){
 
@@ -58,7 +59,11 @@ void Lista_sasiedztwa::Dijkstra(int korzen){
             }
             krawedz=krawedz->nastepna;
         }
+            std::cout<<"KOPIEC:\n";
+            Kopiec.Wypisz();
+            std::cout<<"Koniec KOPCA\n";
     }
+
     std::cout<<"Lista: odległości od wierzchołka numer "<<korzen<<":\n";
 //    std::cout<<"drugi for\n";
     for(int i=0; i<ile_w; i++){
